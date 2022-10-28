@@ -1,0 +1,10 @@
+#contact input{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #8C8C8C;
+    background-color: transparent;
+    color: rgb(190, 190, 190);
+    padding: 5px 10px;
+    box-shadow: 0 .5rem 1rem rgba(255,255,255,.1)!important;
+    margin-bottom: 1rem;
+}

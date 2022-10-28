@@ -1,0 +1,62 @@
+nav {
+    position: fixed;
+    left: -200px;
+    top: 0;
+    z-index: 99999999999;
+}
+
+nav .links{
+    width: 15%;
+    min-width: 200px;
+    background-color: var(--main-color);
+}
+
+nav ul{
+    position: relative;
+    min-height: 40%;
+    overflow: hidden;
+}
+
+nav li{
+    position: absolute;
+    top: 100%;
+}
+
+nav .links-item{
+    text-decoration: none;
+    font-size: large;
+    font-weight: lighter;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+nav .links-item:hover{
+    color: var(--sec-color);
+}
+
+
+nav #drawer {
+    width: min-content;
+    position: relative;
+    background-color: white;
+    padding: 10px;
+}
+
+nav #drawer-icon{
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav #drawer i{
+    color: var(--main-color);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+nav #drawer i:hover{
+    color: var(--sec-color);
+}

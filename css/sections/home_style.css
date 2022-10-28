@@ -1,0 +1,22 @@
+/* HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME */
+/* HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME */
+/* HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME */
+
+
+.meal-list .overlay
+{
+    bottom: -100%;
+    transition: 0.5s;
+    transition-timing-function: ease-out;
+}
+
+.meal-list .meal-card{
+    cursor: pointer;
+}
+
+.meal-list .meal-card:hover .overlay
+{
+    bottom: 0;
+}
+
+

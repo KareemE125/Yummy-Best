@@ -86,6 +86,7 @@ function fillMealUI()
 
 ////////////////////// SEARCH FUNCTIONALITIES ///////////////////////////////
 
+$('nav ul li').eq(0).on('click',()=>$('#search-bars').fadeIn(500));
 
 $('#search-bars input').eq(0).on('input',async function()
 {
@@ -118,8 +119,8 @@ $('#search-bars input').eq(1).on('input',async function()
     }
     catch(e)
     {
-        // mealList = [];
-        // await MAIN();
+        mealList = [];
+        await MAIN();
     }
 
 })

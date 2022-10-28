@@ -2,6 +2,16 @@
 /* HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME */
 /* HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME HOME */
 
+#search-bars{
+    display: none;
+}
+
+#search-bars input{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #8C8C8C;
+    background-color: transparent;
+}
 
 .meal-list .overlay
 {
@@ -20,3 +30,20 @@
 }
 
 
+
+#meal{
+    display: none;
+}
+
+.Ingredient-card
+{
+    border-radius: 5px;
+    background-color: var(--bg-sec-color);
+    color: var(--text-sec-color);
+    padding: 5px;
+    margin: 5px;
+}
+
+.btn-outline-danger:hover{
+    background-color: red;
+}

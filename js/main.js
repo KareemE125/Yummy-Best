@@ -1,32 +1,43 @@
 import API from './modules/apiHelper.js'
 
-const MEAL_CATEGORY_LIST = await API.getMealCategoriesList()
-const MEAL_AREA_LIST = await API.getMealAreaList()
-const MEAL_INGREDIENTS_LIST = await API.getMealIngredientsList()
+// const MEAL_CATEGORY_LIST = await API.getMealCategoriesList()
+// const MEAL_AREA_LIST = await API.getMealAreaList()
+// const MEAL_INGREDIENTS_LIST = await API.getMealIngredientsList()
 
 const homeElem = $('#home');
 const homeListElem = $('#home .meal-list');
 const MealElem = $('#meal');
 
 let currentMeal;
+let mealList = [];
 
-(async function MAIN()
+MAIN();
+
+async function MAIN()
 {  
     homeElem.show(10)
     homeListElem.html(loadSpinnerElem());
 
-    await fillHomeUI();
-    
-    $('.meal-card').on('click',async function(e)
+    try
     {
-        const mealName = e.target.querySelector('h2').innerHTML;
-        homeListElem.html(loadSpinnerElem());
+        await fillHomeUI();
+    
+        $('.meal-card').on('click',async function(e)
+        {
+            const mealName = this.querySelector('h2').innerHTML;
+            homeListElem.html(loadSpinnerElem());
+    
+            currentMeal = (await API.getMealsByName(mealName))[0];
+            fillMealUI(mealName);
+            homeElem.hide(200,()=> MealElem.show(200));
+        });
+    }
+    catch(e)
+    {
+        homeListElem.html('<div class="loader-div"><h2 class="fs-1 text-danger">NO INTERNET CONNECTION</h2></div>');
+    }
 
-        currentMeal = (await API.getMealsByName(mealName))[0];
-        fillMealUI(mealName);
-        homeElem.hide(200,()=> MealElem.show(200));
-    });
-})()
+}
 
 
 function loadSpinnerElem()
@@ -50,7 +61,7 @@ function createMealCardElem(meal)
 
 async function fillHomeUI()
 {
-    const mealList = await API.getMealsByName();
+    mealList = mealList.length === 0 ? await API.getMealsByName() : mealList;
 
     let mealListHTML = ``;
     mealList.forEach((meal)=>{ mealListHTML += createMealCardElem(meal); });
@@ -73,5 +84,47 @@ function fillMealUI()
 ////////////////////// ************************* ///////////////////////////////
 
 
+////////////////////// SEARCH FUNCTIONALITIES ///////////////////////////////
 
 
+$('#search-bars input').eq(0).on('input',async function()
+{
+    homeListElem.html(loadSpinnerElem());
+    mealList = await API.getMealsByName($(this).val());
+    if(mealList.length === 0 && $(this).val().length !== 0)
+    {  
+        homeListElem.html('<div class="loader-div align-items-start pt-5"><h2 class="fs-1 text-danger">NO RESULTS FOUND</h2></div>');
+    }
+    else
+    {
+        await MAIN();
+    }
+})
+
+$('#search-bars input').eq(1).on('input',async function()
+{
+    homeListElem.html(loadSpinnerElem());
+    try
+    {
+        mealList = await API.getMealsByLetter($(this).val());
+        if(mealList.length === 0 && $(this).val().length !== 0)
+        {  
+            homeListElem.html('<div class="loader-div align-items-start pt-5"><h2 class="fs-1 text-danger">NO RESULTS FOUND</h2></div>');
+        }
+        else
+        {
+            await MAIN();
+        }
+    }
+    catch(e)
+    {
+        // mealList = [];
+        // await MAIN();
+    }
+
+})
+
+
+
+
+////////////////////// ************************* ///////////////////////////////

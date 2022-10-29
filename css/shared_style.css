@@ -19,6 +19,17 @@ section{
     padding: 5rem;
 }
 
+@media screen and (max-width:670px) {
+    section{
+        padding: 1rem;
+    }
+}
+@media screen and (max-width:470px) {
+    section{
+        padding: 0px;
+    }
+}
+
 ::placeholder{
     color: #6B747C;
     text-align: center;

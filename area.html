@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yummy</title>
+
+  <link rel="icon" href="assets/images/">
+  <link rel="stylesheet" href="css/all.min.css"> <!-- FontAwesome CSS-->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/sections/nav_style.css">
+  <link rel="stylesheet" href="css/sections/home_style.css">
+  <link rel="stylesheet" href="css/shared_style.css">
+
+  <script src="js/packages/bootstrap.bundle.min.js" defer></script>
+  <script src="js/packages/jquery-3.6.1.js" defer></script>
+  <script src="js/packages/jquery-ui.min.js" defer></script>
+  <script src="js/sideNavBar.js" defer></script>
+  <script type="module" src="js/area.js" defer></script>
+
+</head>
+
+<body>
+
+  <!-- Search Bars -->
+  <section id="search-bars" class="pb-0 container">
+    <div class="row m-0 mx-xl-5 mx-lg-0 px-5 px-lg-5">
+      <div class="col-lg-6 pe-lg-3 mb-5 mb-lg-0">
+        <input class="w-100 text-center text-warning" type="text" placeholder="Search by Name">
+      </div>
+      <div class="col-lg-6 ps-lg-3">
+        <input class="w-100 text-center text-warning" type="text" placeholder="Search by First Letter" maxlength="1">
+      </div>
+    </div>
+  </section>
+
+  <!-- Side Navbar -->
+  <nav class="vh-100 d-flex ">
+    <div class="links p-4 d-flex flex-column ">
+      <ul class="list-unstyled">
+        <li class="mb-4"><a class="links-item" href="#search">Search</a></li>
+        <li class="mb-4"><a class="links-item" href="categories.html">Categories</a></li>
+        <li class="mb-4"><a class="links-item" href="area.html">Area</a></li>
+        <li class="mb-4"><a class="links-item" href="ingredients.html">Ingredients</a></li>
+        <li class="mb-4"><a class="links-item" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div id="drawer" class="d-flex flex-column justify-content-between align-items-center">
+      <a href="index.html"><img class="img-fluid" src="assets/images/logo.png" alt="LOGO"></a>
+      <div id="drawer-icon">
+        <i id="open-btn" class="fa fa-bars fs-3 mx-2 mb-1"></i>
+      </div>
+      <div class="d-flex flex-column">
+        <a href="https://www.google.com/"><i class="fa fa-globe mb-3"></i></a>
+        <a href="https://www.themealdb.com/api.php"><i class="fa fa-share-nodes"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="home">
+    <div class="container p-0 p-xl-5">
+      <div class="row meal-list g-4">
+        <!-- CODE HERE -->
+      </div>
+    </div>
+  </section>
+
+  <section id="meal">
+    <div class="container p-0 p-xl-5">
+      <div class="row meal-list g-4">
+        <div class="col-md-5 mb-4 d-flex flex-column justify-content-start align-items-center">
+          <img id="image" class="img-fluid mb-2" src="https://www.themealdb.com/images/media/meals/58oia61564916529.jpg"
+            alt="meal image">
+          <h2 id="name" class="fw-lighter fs-1">Corba</h2>
+        </div>
+        <div class="col-md-7">
+          <h2 class="fw-lighter">Instructions</h2>
+          <p id="instructions"></p>
+          <p><b>Area: </b><span id="area">Turkish</span></p>
+          <p><b>Category: </b><span id="category">Side</span></p>
+          <h2 class="fw-lighter mb-3">Ingredients:</h2>
+          <div id="ingredients" class="d-flex flex-wrap mb-4">
+            
+          </div>
+          <h2 class="fw-lighter mb-3">Tags:</h2>
+          <a id="youtube" href="" target="_blank">
+            <button class="btn btn-outline-danger"> YouTube </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+
+</html>

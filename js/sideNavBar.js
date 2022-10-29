@@ -15,10 +15,9 @@ if( window.mobileCheck() )
     {
         links.eq(i).css('top',`${top}%`);
         top += 18; 
-        console.log(top)
     }
 
-
+    $('nav div').addClass('mobile-mode')
     animateLinks = function(){}
 }
 else

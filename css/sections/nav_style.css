@@ -81,3 +81,7 @@ nav #nav-footer i{
 nav #nav-footer i:hover{
     color: var(--sec-color);
 }
+
+nav .mobile-mode{
+    padding-bottom: 65px;
+}

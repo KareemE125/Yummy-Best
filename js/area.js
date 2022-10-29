@@ -125,12 +125,11 @@ function fillMealUI()
 
 ////////////////////// ************************* ///////////////////////////////
 
-
 ////////////////////// SEARCH FUNCTIONALITIES ///////////////////////////////
 
 $('nav ul li').eq(0).on('click',()=>{
     localStorage.setItem('searchStatus','on');
-    window.location = "../index.html";
+    window.location = "../Yummy-Best/index.html";
 });
 
 ////////////////////// ************************* ///////////////////////////////

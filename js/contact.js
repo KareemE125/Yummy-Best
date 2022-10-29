@@ -69,3 +69,12 @@ submitBtn.on('click',function(){
     }, 1000);
 
 });
+
+////////////////////// SEARCH FUNCTIONALITIES ///////////////////////////////
+
+$('nav ul li').eq(0).on('click',()=>{
+    localStorage.setItem('searchStatus','on');
+    window.location = "../Yummy-Best/index.html";
+});
+
+////////////////////// ************************* ///////////////////////////////

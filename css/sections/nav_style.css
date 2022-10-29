@@ -60,3 +60,24 @@ nav #drawer i{
 nav #drawer i:hover{
     color: var(--sec-color);
 }
+
+nav #nav-footer {
+    margin-left: -6%;
+    margin-right: -6%;
+}
+
+nav #nav-footer p{
+    font-size: 11px;
+    font-weight: 100;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+nav #nav-footer i{
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+    transition: 0.5s;
+}
+
+nav #nav-footer i:hover{
+    color: var(--sec-color);
+}

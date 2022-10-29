@@ -15,6 +15,7 @@ MAIN();
 
 async function MAIN()
 {  
+    MealElem.hide(10);
     homeElem.show(10)
     homeListElem.html(loadSpinnerElem());
 

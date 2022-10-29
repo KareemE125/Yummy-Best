@@ -51,28 +51,49 @@
 
   <!-- Contact Us -->
   <section id="contact">
-    <div class="container p-0 p-5">
+    <div class="container p-0 px-5">
       <h2 class="fs-1 text-center mb-5">Contact Us</h2>
-      <div class="row meal-list g-4 mt-5">
-        <div class="col-lg-6">
-          <input class="w-100" type="text" placeholder="Enter Your Name">
+      <form>
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-6 position-relative">
+            <i class="fa fa-check bg-green"></i>
+            <i class="fa fa-close bg-red"></i>
+            <input class="w-100" type="text" name="name" placeholder="Enter Your Name" required>
+            <div class="validation-card">"Your name should have at least 3 characters."</div>
+          </div>
+          <div class="col-lg-6 position-relative">
+            <i class="fa fa-check bg-green"></i>
+            <i class="fa fa-close bg-red"></i>
+            <input class="w-100" type="email" name="email" placeholder="Enter Your Email" required>
+            <div class="validation-card">"You should enter a valid email."</div>
+          </div>
+          <div class="col-lg-6 position-relative">
+            <i class="fa fa-check bg-green"></i>
+            <i class="fa fa-close bg-red"></i>
+            <input class="w-100" type="tel" name="phone" placeholder="Enter Your Phone" required>
+            <div class="validation-card">"You should enter a valid number ex:0104 5678 910."</div>
+          </div>
+          <div class="col-lg-6 position-relative">
+            <i class="fa fa-check bg-green"></i>
+            <i class="fa fa-close bg-red"></i>
+            <input class="w-100" type="number" name="age" placeholder="Enter Your Age" required>
+            <div class="validation-card">"You should enter a valid age."</div>
+          </div>
+          <div class="col-lg-6 position-relative">
+            <i class="fa fa-check bg-green"></i>
+            <i class="fa fa-close bg-red"></i>
+            <input class="w-100" type="password" name="password" placeholder="Enter Your Password" required>
+            <div class="validation-card">"Your name should have at least 8 characters, 1 UPPERCASE, 1 lowercase, 1 number, 1 $peci@l ch@r@cter."</div>
+          </div>
+          <div class="col-lg-6 position-relative">
+            <i class="fa fa-check bg-green"></i>
+            <i class="fa fa-close bg-red"></i>
+            <input class="w-100" type="password" name="repassword" placeholder="Re-enter Your Password" required>
+            <div class="validation-card">"You should have matched passwords."</div>
+          </div>
+          <button class="btn btn-outline-warning mt-5" type="submit">Submit</button>
         </div>
-        <div class="col-lg-6">
-          <input class="w-100" type="email" placeholder="Enter Your Email">
-        </div>
-        <div class="col-lg-6">
-          <input class="w-100" type="tel" placeholder="Enter Your Phone">
-        </div>
-        <div class="col-lg-6">
-          <input class="w-100" type="number" placeholder="Enter Your Age">
-        </div>
-        <div class="col-lg-6">
-          <input class="w-100" type="password" placeholder="Enter Your Password">
-        </div>
-        <div class="col-lg-6">
-          <input class="w-100" type="password" placeholder="Re-enter Your Password">
-        </div>
-      </div>
+      </form>
     </div>
   </section>
 

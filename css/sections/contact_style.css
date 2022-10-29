@@ -5,6 +5,43 @@
     background-color: transparent;
     color: rgb(190, 190, 190);
     padding: 5px 10px;
-    box-shadow: 0 .5rem 1rem rgba(255,255,255,.1)!important;
-    margin-bottom: 1rem;
+    box-shadow: 0 .5rem 1rem rgba(255,255,255,.2)!important;
+    margin-bottom: 5px;
 }
+
+#contact button{
+    width: fit-content;
+}
+
+#contact button:hover{
+    color: white;
+}
+
+#contact .valid{
+    border-bottom-color: green;
+    box-shadow: 0 .5rem 1rem rgba(0, 152, 43, 0.5)!important;
+}
+
+#contact .non-valid{
+    border-bottom-color: red;
+    box-shadow: 0 .5rem 1rem rgba(156, 5, 5, 0.5)!important;
+}
+
+#contact .validation-card{
+    background-color: var(--bg-sec-color);
+    color: var(--text-sec-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    display: none;
+}
+
+#contact i{        
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    display: none;
+}
+
+.bg-green{ color: green;}
+.bg-red{ color: red;}

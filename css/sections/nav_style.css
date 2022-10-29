@@ -83,5 +83,5 @@ nav #nav-footer i:hover{
 }
 
 nav .mobile-mode{
-    padding-bottom: 65px;
+    padding-bottom: 65px !important;
 }

@@ -18,7 +18,7 @@ if( window.mobileCheck() )
     }
 
     $('nav .links').addClass('mobile-mode')
-    $('nav #nav-footer').addClass('mobile-mode')
+    $('nav #drawer').addClass('mobile-mode')
     animateLinks = function(){}
 }
 else

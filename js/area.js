@@ -1,11 +1,13 @@
 import API from './modules/apiHelper.js'
 
-// const MEAL_CATEGORY_LIST = await API.getMealCategoriesList()
-// const MEAL_AREA_LIST = await API.getMealAreaList()
-// const MEAL_INGREDIENTS_LIST = await API.getMealIngredientsList()
+
 
 const homeElem = $('#home');
 const homeListElem = $('#home .meal-list');
+
+const areaElem = $('#area');
+const areaListElem = $('#area .area-list');
+
 const MealElem = $('#meal');
 
 let currentMeal;
@@ -16,21 +18,34 @@ MAIN();
 async function MAIN()
 {  
     MealElem.hide(10);
-    homeElem.show(10)
-    homeListElem.html(loadSpinnerElem());
+    homeElem.hide(10)
+    areaListElem.html(loadSpinnerElem());
 
+    
     try
     {
-        await fillHomeUI();
+        await fillAreaUI();
+        
     
-        $('.meal-card').on('click',async function(e)
+        $('.area-card').on('click',async function()
         {
-            const mealName = this.querySelector('h2').innerHTML;
-            homeListElem.html(loadSpinnerElem());
-    
-            currentMeal = (await API.getMealsByName(mealName))[0];
-            fillMealUI(mealName);
-            homeElem.hide(200,()=> MealElem.show(200));
+
+            areaListElem.html(loadSpinnerElem());
+            const areaName = this.querySelector('h2').innerHTML;
+
+            await fillHomeUI(areaName);
+            areaElem.hide(200,()=> homeElem.show(200));
+
+            $('.meal-card').on('click',async function()
+            {
+                const mealName = this.querySelector('h2').innerHTML;
+                homeListElem.html(loadSpinnerElem());
+        
+                currentMeal = (await API.getMealsByName(mealName))[0];
+                fillMealUI(mealName);
+                homeElem.hide(200,()=> MealElem.show(200));
+            });
+
         });
     }
     catch(e)
@@ -46,7 +61,31 @@ function loadSpinnerElem()
     return '<div class="loader-div"><div class="loader"></div></div>';
 }
 
+////////////////////// AREA FUNCTIONALITIES ///////////////////////////////
+function createAreaCardElem(name)
+{
+    return `
+    <div class="col-lg-3 col-md-6">
+        <div class="area-card">
+            <i class="fa-5x fa-solid fa-city"></i>
+            <h2 class="text-center mt-3">${name}</h2>
+        </div>
+    </div>`;
+}
+
+async function fillAreaUI()
+{
+    const MEAL_AREA_LIST = await API.getMealAreaList();
+    let areaListHTML = ``;
+    MEAL_AREA_LIST.forEach((areaName)=>{ areaListHTML += createAreaCardElem(areaName); });
+    areaListElem.html(areaListHTML);
+}
+////////////////////// ************************* ///////////////////////////////
+
+
+
 ////////////////////// HOME FUNCTIONALITIES ///////////////////////////////
+
 function createMealCardElem(meal)
 {
     return `
@@ -60,9 +99,10 @@ function createMealCardElem(meal)
     </div>`;
 }
 
-async function fillHomeUI()
+
+async function fillHomeUI(areaName)
 {
-    mealList = mealList.length === 0 ? await API.getMealsByName() : mealList;
+    mealList = mealList.length === 0 ? await API.getMealsByArea(areaName) : mealList;
 
     let mealListHTML = ``;
     mealList.forEach((meal)=>{ mealListHTML += createMealCardElem(meal); });
@@ -87,46 +127,9 @@ function fillMealUI()
 
 ////////////////////// SEARCH FUNCTIONALITIES ///////////////////////////////
 
-$('nav ul li').eq(0).on('click',()=>$('#search-bars').fadeIn(500));
-
-$('#search-bars input').eq(0).on('input',async function()
-{
-    homeListElem.html(loadSpinnerElem());
-    mealList = await API.getMealsByName($(this).val());
-    if(mealList.length === 0 && $(this).val().length !== 0)
-    {  
-        homeListElem.html('<div class="loader-div align-items-start pt-5"><h2 class="fs-1 text-danger">NO RESULTS FOUND</h2></div>');
-    }
-    else
-    {
-        await MAIN();
-    }
-})
-
-$('#search-bars input').eq(1).on('input',async function()
-{
-    homeListElem.html(loadSpinnerElem());
-    try
-    {
-        mealList = await API.getMealsByLetter($(this).val());
-        if(mealList.length === 0 && $(this).val().length !== 0)
-        {  
-            homeListElem.html('<div class="loader-div align-items-start pt-5"><h2 class="fs-1 text-danger">NO RESULTS FOUND</h2></div>');
-        }
-        else
-        {
-            await MAIN();
-        }
-    }
-    catch(e)
-    {
-        mealList = [];
-        await MAIN();
-    }
-
-})
-
-
-
+$('nav ul li').eq(0).on('click',()=>{
+    localStorage.setItem('searchStatus','on');
+    window.location = "../index.html";
+});
 
 ////////////////////// ************************* ///////////////////////////////

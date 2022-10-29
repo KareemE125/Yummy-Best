@@ -16,7 +16,13 @@ MAIN();
 async function MAIN()
 {  
     MealElem.hide(10);
-    homeElem.show(10)
+    homeElem.show(10);
+
+    // The "searchStatus" to know if the user came from another page by click on
+    // the seach from the side bar, so we navigate to the home with enabling the search
+    localStorage.getItem('searchStatus') === 'on'? $('#search-bars').fadeIn(500) : null;
+    localStorage.setItem('searchStatus','off');
+
     homeListElem.html(loadSpinnerElem());
 
     try

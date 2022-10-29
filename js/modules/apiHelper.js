@@ -90,7 +90,7 @@ export default class API_Helper
                 ingredientsList.push(
                     {
                         name: response[i].strIngredient,
-                        description: response[i].strDescription,
+                        description: response[i].strDescription.substring(0,100)+"...",
                     }
                 );
             }

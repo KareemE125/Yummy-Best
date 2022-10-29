@@ -27,43 +27,41 @@
 
 <body>
 
-  <!-- Search Bars -->
-  <section id="search-bars" class="pb-0 container">
-    <div class="row m-0 mx-xl-5 mx-lg-0 px-5 px-lg-5">
-      <div class="col-lg-6 pe-lg-3 mb-5 mb-lg-0">
-        <input class="w-100 text-center text-warning" type="text" placeholder="Search by Name">
+  <!-- Side Navbar -->
+  <nav class="vh-100 d-flex ">
+      <div class="links p-4 d-flex flex-column ">
+          <ul class="list-unstyled">
+              <li class="mb-4"><a class="links-item" href="#search">Search</a></li>
+              <li class="mb-4"><a class="links-item" href="categories.html">Categories</a></li>
+              <li class="mb-4"><a class="links-item" href="area.html">Area</a></li>
+              <li class="mb-4"><a class="links-item" href="ingredients.html">Ingredients</a></li>
+              <li class="mb-4"><a class="links-item" href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div id="drawer" class="d-flex flex-column justify-content-between align-items-center">
+            <a href="index.html"><img class="img-fluid" src="assets/images/logo.png" alt="LOGO"></a>
+            <div id="drawer-icon">
+                <i id="open-btn" class="fa fa-bars fs-3 mx-2 mb-1"></i>
+            </div>
+            <div class="d-flex flex-column">
+                <a href="https://www.google.com/"><i class="fa fa-globe mb-3"></i></a>
+                <a href="https://www.themealdb.com/api.php"><i class="fa fa-share-nodes"></i></a>
+            </div>
       </div>
-      <div class="col-lg-6 ps-lg-3">
-        <input class="w-100 text-center text-warning" type="text" placeholder="Search by First Letter" maxlength="1">
+  </nav>
+
+  <!-- Category Section -->
+  <section id="category">
+    <div class="container p-0 p-xl-5">
+      <div class="row category-list g-4">
+          <!-- CODE HERE -->
       </div>
     </div>
   </section>
 
-  <!-- Side Navbar -->
-  <nav class="vh-100 d-flex ">
-    <div class="links p-4 d-flex flex-column ">
-      <ul class="list-unstyled">
-        <li class="mb-4"><a class="links-item" href="#">Search</a></li>
-        <li class="mb-4"><a class="links-item" href="categories.html">Categories</a></li>
-        <li class="mb-4"><a class="links-item" href="area.html">Area</a></li>
-        <li class="mb-4"><a class="links-item" href="ingredients.html">Ingredients</a></li>
-        <li class="mb-4"><a class="links-item" href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-    <div id="drawer" class="d-flex flex-column justify-content-between align-items-center">
-      <a href="index.html"><img class="img-fluid" src="assets/images/logo.png" alt="LOGO"></a>
-      <div id="drawer-icon">
-        <i id="open-btn" class="fa fa-bars fs-3 mx-2 mb-1"></i>
-      </div>
-      <div class="d-flex flex-column">
-        <a href="https://www.google.com/"><i class="fa fa-globe mb-3"></i></a>
-        <a href="https://www.themealdb.com/api.php"><i class="fa fa-share-nodes"></i></a>
-      </div>
-    </div>
-  </nav>
 
   <!-- Home Section -->
-  <section id="home" class="home">
+  <section id="home">
     <div class="container p-0 p-xl-5">
       <div class="row meal-list g-4">
         <!-- CODE HERE -->
@@ -71,6 +69,8 @@
     </div>
   </section>
 
+
+  <!-- Meal Section -->
   <section id="meal">
     <div class="container p-0 p-xl-5">
       <div class="row meal-list g-4">

@@ -1,11 +1,12 @@
 import API from './modules/apiHelper.js'
 
-// const MEAL_CATEGORY_LIST = await API.getMealCategoriesList()
-// const MEAL_AREA_LIST = await API.getMealAreaList()
-// const MEAL_INGREDIENTS_LIST = await API.getMealIngredientsList()
 
 const homeElem = $('#home');
 const homeListElem = $('#home .meal-list');
+
+const categoryElem = $('#category');
+const categoryListElem = $('#category .category-list');
+
 const MealElem = $('#meal');
 
 let currentMeal;
@@ -16,21 +17,35 @@ MAIN();
 async function MAIN()
 {  
     MealElem.hide(10);
-    homeElem.show(10)
-    homeListElem.html(loadSpinnerElem());
+    homeElem.hide(10)
+    categoryListElem.html(loadSpinnerElem());
 
+    
     try
     {
-        await fillHomeUI();
+        await fillCategoryUI();
+        
     
-        $('.meal-card').on('click',async function(e)
+        $('.category-card').on('click',async function()
         {
-            const mealName = this.querySelector('h2').innerHTML;
-            homeListElem.html(loadSpinnerElem());
-    
-            currentMeal = (await API.getMealsByName(mealName))[0];
-            fillMealUI(mealName);
-            homeElem.hide(200,()=> MealElem.show(200));
+
+            categoryListElem.html(loadSpinnerElem());
+            const categoryName = this.querySelector('h2').innerHTML;
+
+            await fillHomeUI(categoryName);
+            categoryElem.hide(200,()=> homeElem.show(200));
+
+            $('.meal-card').on('click',async function()
+            {
+                const mealName = this.querySelector('h2').getAttribute('mealName');
+                
+                homeListElem.html(loadSpinnerElem());
+        
+                currentMeal = (await API.getMealsByName(mealName))[0];
+                fillMealUI(mealName);
+                homeElem.hide(200,()=> MealElem.show(200));
+            });
+
         });
     }
     catch(e)
@@ -46,7 +61,35 @@ function loadSpinnerElem()
     return '<div class="loader-div"><div class="loader"></div></div>';
 }
 
+////////////////////// CATEGORIES FUNCTIONALITIES ///////////////////////////////
+function createCategoryCardElem(category)
+{
+    return `
+    <div class="col-xxl-3 col-xl-4 col-md-6">
+        <div class="category-card position-relative overflow-hidden py-5 d-flex justify-content-center">
+            <img class="img-fluid rounded" src="${category.imageURL}" alt="meal image">
+            <div class="overlay d-flex flex-column align-items-center position-absolute rounded overflow-hidden w-100 h-100 bg-white bg-opacity-75">
+                <h2 class="ms-2 fw-light text-black text-wrap text-center">${category.name}</h2>
+                <p class="text-center fw-normal text-black d-flex align-items-center">${category.description}</p>
+            </div>
+        </div>
+    </div>`;
+}
+
+async function fillCategoryUI()
+{
+    const MEAL_CATEGORY_LIST = await API.getMealCategoriesList();
+
+    let categoryListHTML = ``;
+    MEAL_CATEGORY_LIST.forEach((category)=>{ categoryListHTML += createCategoryCardElem(category); });
+    categoryListElem.html(categoryListHTML);
+}
+////////////////////// ************************* ///////////////////////////////
+
+
+
 ////////////////////// HOME FUNCTIONALITIES ///////////////////////////////
+
 function createMealCardElem(meal)
 {
     return `
@@ -54,15 +97,16 @@ function createMealCardElem(meal)
         <div class="meal-card position-relative overflow-hidden">
             <img class="img-fluid rounded" src="${meal.imageURL}" alt="meal image">
             <div class="overlay position-absolute rounded overflow-hidden w-100 h-100 bg-danger d-flex align-items-center bg-white bg-opacity-50">
-                <h2 class="position-absolute ms-2 fw-light text-black text-wrap">${meal.name}</h2>
+                <h2 class="position-absolute ms-2 fw-light text-black text-wrap" mealName='${meal.name}'>${meal.name.length > 30? meal.name.substring(0,30)+"..." : meal.name}</h2>
             </div>
         </div>
     </div>`;
 }
 
-async function fillHomeUI()
+
+async function fillHomeUI(areaName)
 {
-    mealList = mealList.length === 0 ? await API.getMealsByName() : mealList;
+    mealList = mealList.length === 0 ? await API.getMealsByCategory(areaName) : mealList;
 
     let mealListHTML = ``;
     mealList.forEach((meal)=>{ mealListHTML += createMealCardElem(meal); });
@@ -87,46 +131,9 @@ function fillMealUI()
 
 ////////////////////// SEARCH FUNCTIONALITIES ///////////////////////////////
 
-$('nav ul li').eq(0).on('click',()=>$('#search-bars').fadeIn(500));
-
-$('#search-bars input').eq(0).on('input',async function()
-{
-    homeListElem.html(loadSpinnerElem());
-    mealList = await API.getMealsByName($(this).val());
-    if(mealList.length === 0 && $(this).val().length !== 0)
-    {  
-        homeListElem.html('<div class="loader-div align-items-start pt-5"><h2 class="fs-1 text-danger">NO RESULTS FOUND</h2></div>');
-    }
-    else
-    {
-        await MAIN();
-    }
-})
-
-$('#search-bars input').eq(1).on('input',async function()
-{
-    homeListElem.html(loadSpinnerElem());
-    try
-    {
-        mealList = await API.getMealsByLetter($(this).val());
-        if(mealList.length === 0 && $(this).val().length !== 0)
-        {  
-            homeListElem.html('<div class="loader-div align-items-start pt-5"><h2 class="fs-1 text-danger">NO RESULTS FOUND</h2></div>');
-        }
-        else
-        {
-            await MAIN();
-        }
-    }
-    catch(e)
-    {
-        mealList = [];
-        await MAIN();
-    }
-
-})
-
-
-
+$('nav ul li').eq(0).on('click',()=>{
+    localStorage.setItem('searchStatus','on');
+    window.location = "../index.html";
+});
 
 ////////////////////// ************************* ///////////////////////////////

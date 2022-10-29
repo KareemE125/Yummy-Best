@@ -38,7 +38,8 @@ async function MAIN()
 
             $('.meal-card').on('click',async function()
             {
-                const mealName = this.querySelector('h2').innerHTML;
+                const mealName = this.querySelector('h2').getAttribute('mealName');
+                
                 homeListElem.html(loadSpinnerElem());
         
                 currentMeal = (await API.getMealsByName(mealName))[0];
@@ -93,7 +94,7 @@ function createMealCardElem(meal)
         <div class="meal-card position-relative overflow-hidden">
             <img class="img-fluid rounded" src="${meal.imageURL}" alt="meal image">
             <div class="overlay position-absolute rounded overflow-hidden w-100 h-100 bg-danger d-flex align-items-center bg-white bg-opacity-50">
-                <h2 class="position-absolute ms-2 fw-light text-black text-wrap">${meal.name}</h2>
+                <h2 class="position-absolute ms-2 fw-light text-black text-wrap" mealName='${meal.name}'>${meal.name.length > 30? meal.name.substring(0,30)+"..." : meal.name}</h2>
             </div>
         </div>
     </div>`;

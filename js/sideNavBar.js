@@ -17,7 +17,8 @@ if( window.mobileCheck() )
         top += 18; 
     }
 
-    $('nav div').addClass('mobile-mode')
+    $('nav .links').addClass('mobile-mode')
+    $('nav #nav-footer').addClass('mobile-mode')
     animateLinks = function(){}
 }
 else
